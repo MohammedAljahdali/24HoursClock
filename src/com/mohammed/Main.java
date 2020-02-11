@@ -23,14 +23,23 @@ public class Main {
             String time = times.get(i);
             String[] hoursMins = time.split(":");
             int hours = Integer.parseInt(hoursMins[0]);
-            if (hours >= 12) {
+            if (hours > 12) {
                 xm = "PM";
                 hours = hours - 12;
+            } else if (hours == 12) {
+                xm = "PM";
             } else {
                 xm = "AM";
             }
             int mins = Integer.parseInt(hoursMins[1]);
-            printStream.println(hours+":"+mins+" "+xm);
+            if (hours < 10)
+                printStream.println("0"+hours+":"+mins+" "+xm);
+            else if (mins < 10)
+                printStream.println(hours+":"+"0"+mins+" "+xm);
+            else if (mins < 10 && hours < 10)
+                printStream.println("0"+hours+":"+"0"+mins+" "+xm);
+            else
+                printStream.println(hours+":"+mins+" "+xm);
         }
 
     }
